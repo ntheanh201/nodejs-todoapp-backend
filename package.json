@@ -1,0 +1,22 @@
+{
+  "name": "todoapp-backend",
+  "version": "1.0.0",
+  "description": "todoapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "hi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntheanh201/nodejs-todoapp-backend.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "ntheanh201",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ntheanh201/nodejs-todoapp-backend/issues"
+  },
+  "homepage": "https://github.com/ntheanh201/nodejs-todoapp-backend#readme"
+}
