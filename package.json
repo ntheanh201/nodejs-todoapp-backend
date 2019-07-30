@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "todoapp",
   "main": "index.js",
+  "live": "nodemon server.js",
   "scripts": {
     "test": "hi"
   },
@@ -20,6 +21,11 @@
   },
   "homepage": "https://github.com/ntheanh201/nodejs-todoapp-backend#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "node-persist": "0.0.8",
+    "q": "^1.5.1"
   }
 }
