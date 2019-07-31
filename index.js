@@ -1,44 +1,49 @@
-const express = require('express')
+import express from 'express'
+import {TodoService} from './controller'
+import {route} from './route'
+
 const app = express()
 const port = 8123
 
-// var route = require('./route')
-var controller = require('./controller')
-var bodyParser = require("body-parser");
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
-  res.send("Hello World")
-})
+//nodemon -x npm start
+//npm run development
 
 app.get('/todos', (req, res) => {
-  console.log("GET Request")
-  res.send(controller.todos)
+  console.log("GET request all todos")
+  res.send(TodoService.getTodos())
 })
 
-app.get('/todos/:todosId', (req, res) => {
-  console.log("GET Request")
-  res.send(controller.todos[req.params.todosId])
+app.get('/todos/:id', (req, res) => {
+  console.log("GET todo by id")
+  res.send(TodoService.getTodo(req.params.id))
 })
 
 app.post('/todos', (req, res) => {
-  console.log("POST Request")
-  res.send(controller.todos)
+  console.log("POST create new todo")
+  console.log(req.body)
+  res.send(TodoService.addTodo(req.body.name))
 })
 
-app.post('/addTodo', (req, res) => {
-  console.log("POST Add todo")
-  res.send(controller.addTodo(req.body.todo))
+app.put('/todos/:id', (req, res) => {
+  console.log("PUT update todo")
+  console.log(req.body.name)
+  res.send(TodoService.updateTodo(req.params.id, req.body))
 })
 
-app.post('/updateTodos', (req, res) => {
-  console.log("POST Update todo")
-  res.send(controller.updateTodo(req.body.todo))
+app.delete('/todos/completed', (req, res) => {
+  console.log("DELETE completed todo");
+  res.send(TodoService.clearCompletedTodo())
 })
 
-app.post('./clearCompletedTodo', (req, res) => {
-  console.log("POST Clear completed");
-  res.send(controller.clearCompletedTodo(req.body.todos))
+app.delete('/todos/:id', (req, res) => {
+  console.log("DELETE todo")
+  res.send(TodoService.deleteTodo(req.params.id))
 })
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))
