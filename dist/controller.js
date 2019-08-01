@@ -3,15 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.TodoService = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _uuid = require('uuid');
-
-var _uuid2 = _interopRequireDefault(_uuid);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -29,7 +22,7 @@ var Todo = function () {
             id: '1',
             isDone: true,
             name: "Todo Item 2"
-        }];
+        }], this.toggleStatus = false;
     }
 
     _createClass(Todo, [{
@@ -47,8 +40,8 @@ var Todo = function () {
         }
     }, {
         key: 'addTodo',
-        value: function addTodo(name) {
-            this.todos = [].concat(_toConsumableArray(this.todos), [{ id: (0, _uuid2.default)(), isDone: false, name: name }]);
+        value: function addTodo(name, id) {
+            this.todos = [].concat(_toConsumableArray(this.todos), [{ id: id, isDone: false, name: name }]);
         }
     }, {
         key: 'updateTodo',
@@ -78,6 +71,22 @@ var Todo = function () {
                 var isDone = _ref4.isDone;
                 return !isDone;
             });
+        }
+    }, {
+        key: 'toggleAllTodo',
+        value: function toggleAllTodo() {
+            var _this = this;
+
+            this.todos = this.todos.map(function (_ref5) {
+                var id = _ref5.id,
+                    name = _ref5.name;
+                return {
+                    id: id,
+                    isDone: !_this.toggleStatus,
+                    name: name
+                };
+            });
+            this.toggleStatus = !this.toggleStatus;
         }
     }]);
 

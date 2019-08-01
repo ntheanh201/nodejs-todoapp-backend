@@ -5,8 +5,8 @@ const TodosRoute = express.Router()
 
 TodosRoute.route('/').get((req, res) => {
     console.log("GET all todos")
-    res.status(200).send(TodoService.getTodos())
-    // res.send(TodoService.getTodos())
+    // res.status(200).send(TodoService.getTodos())
+    res.send(TodoService.getTodos())
 })
 
 TodosRoute.route('/:id').get((req, res) => {
@@ -16,7 +16,7 @@ TodosRoute.route('/:id').get((req, res) => {
 
 TodosRoute.route('/').post((req, res) => {
     console.log('POST create new todo')
-    res.status(200).send(TodoService.addTodo(req.body.name))
+    res.status(200).send(TodoService.addTodo(req.body.name, req.body.id))
 })
 
 TodosRoute.route('/:id').put((req, res) => {
@@ -32,6 +32,11 @@ TodosRoute.route('/completed').delete((req, res) => {
 TodosRoute.route('/:id').delete((req, res) => {
     console.log("DELETE todo");
     res.status(200).send(TodoService.deleteTodo(req.params.id))
+})
+
+TodosRoute.route('/toggleAll').put((req, res) => {
+    console.log("PUT toggle all todos")
+    res.status(200).send(TodoService.toggleAllTodo())
 })
 
 export default TodosRoute

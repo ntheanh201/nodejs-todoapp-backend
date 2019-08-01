@@ -1,5 +1,3 @@
-import uuid from 'uuid'
-
 class Todo {
     constructor(){
         this.todos = [{
@@ -10,7 +8,8 @@ class Todo {
             id: '1',
             isDone: true,
             name: "Todo Item 2"
-        }]
+        }],
+        this.toggleStatus = false
     }
 
     getTodos (){ 
@@ -21,8 +20,8 @@ class Todo {
         return this.todos.find(({id}) => id === todoId)
     }
 
-    addTodo(name) {
-        this.todos = [...this.todos, {id: uuid(), isDone: false, name}]
+    addTodo(name, id) {
+        this.todos = [...this.todos, {id, isDone: false, name}]
     }
     
     updateTodo(todoId, newTodo) {
@@ -41,5 +40,15 @@ class Todo {
     clearCompletedTodo () {
         this.todos = this.todos.filter(({isDone}) => !isDone)
     }
+    
+    toggleAllTodo () {
+        this.todos = this.todos.map(({id, name}) => ({
+            id,
+            isDone: !this.toggleStatus,
+            name
+        }))
+        this.toggleStatus = !this.toggleStatus
+    }
+
 }
 export const TodoService =  new Todo()

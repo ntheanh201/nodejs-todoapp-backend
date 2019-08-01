@@ -17,8 +17,8 @@ var TodosRoute = _express2.default.Router();
 
 TodosRoute.route('/').get(function (req, res) {
     console.log("GET all todos");
-    res.status(200).send(_controller.TodoService.getTodos());
-    // res.send(TodoService.getTodos())
+    // res.status(200).send(TodoService.getTodos())
+    res.send(_controller.TodoService.getTodos());
 });
 
 TodosRoute.route('/:id').get(function (req, res) {
@@ -28,7 +28,7 @@ TodosRoute.route('/:id').get(function (req, res) {
 
 TodosRoute.route('/').post(function (req, res) {
     console.log('POST create new todo');
-    res.status(200).send(_controller.TodoService.addTodo(req.body.name));
+    res.status(200).send(_controller.TodoService.addTodo(req.body.name, req.body.id));
 });
 
 TodosRoute.route('/:id').put(function (req, res) {
@@ -44,6 +44,11 @@ TodosRoute.route('/completed').delete(function (req, res) {
 TodosRoute.route('/:id').delete(function (req, res) {
     console.log("DELETE todo");
     res.status(200).send(_controller.TodoService.deleteTodo(req.params.id));
+});
+
+TodosRoute.route('/toggleAll').put(function (req, res) {
+    console.log("PUT toggle all todos");
+    res.status(200).send(_controller.TodoService.toggleAllTodo());
 });
 
 exports.default = TodosRoute;
