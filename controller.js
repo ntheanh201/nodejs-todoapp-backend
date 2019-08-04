@@ -8,8 +8,7 @@ class Todo {
             id: '1',
             isDone: true,
             name: "Todo Item 2"
-        }],
-        this.toggleStatus = false
+        }]
     }
 
     getTodos (){ 
@@ -41,13 +40,13 @@ class Todo {
         this.todos = this.todos.filter(({isDone}) => !isDone)
     }
     
-    toggleAllTodo () {
+    toggleAllTodo (toggleStatus) {
+        // console.log(this.todos)
         this.todos = this.todos.map(({id, name}) => ({
             id,
-            isDone: !this.toggleStatus,
+            isDone: !toggleStatus,
             name
         }))
-        this.toggleStatus = !this.toggleStatus
     }
 
 }

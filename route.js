@@ -19,9 +19,10 @@ TodosRoute.route('/').post((req, res) => {
     res.status(200).send(TodoService.addTodo(req.body.name, req.body.id))
 })
 
-TodosRoute.route('/:id').put((req, res) => {
+TodosRoute.route('/update/:id').put((req, res) => {
     console.log("PUT update todo")
-    res.status(200).send(TodoService.updateTodo(req.params.id, req.body))
+    console.log(req.body)
+    res.status(200).send(TodoService.updateTodo(req.params.id, req.body.todo))
 })
 
 TodosRoute.route('/completed').delete((req, res) => {
@@ -36,7 +37,8 @@ TodosRoute.route('/:id').delete((req, res) => {
 
 TodosRoute.route('/toggleAll').put((req, res) => {
     console.log("PUT toggle all todos")
-    res.status(200).send(TodoService.toggleAllTodo())
+    // console.log(req.body)
+    res.status(200).send(TodoService.toggleAllTodo(req.body.toggleStatus))
 })
 
 export default TodosRoute

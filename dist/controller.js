@@ -22,7 +22,7 @@ var Todo = function () {
             id: '1',
             isDone: true,
             name: "Todo Item 2"
-        }], this.toggleStatus = false;
+        }];
     }
 
     _createClass(Todo, [{
@@ -74,19 +74,17 @@ var Todo = function () {
         }
     }, {
         key: 'toggleAllTodo',
-        value: function toggleAllTodo() {
-            var _this = this;
-
+        value: function toggleAllTodo(toggleStatus) {
+            // console.log(this.todos)
             this.todos = this.todos.map(function (_ref5) {
                 var id = _ref5.id,
                     name = _ref5.name;
                 return {
                     id: id,
-                    isDone: !_this.toggleStatus,
+                    isDone: !toggleStatus,
                     name: name
                 };
             });
-            this.toggleStatus = !this.toggleStatus;
         }
     }]);
 
