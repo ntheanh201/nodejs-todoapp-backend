@@ -1,5 +1,5 @@
 import express from 'express'
-import {TodoService} from './controller'
+// import database from './database'
 import route from './route'
 
 const app = express()

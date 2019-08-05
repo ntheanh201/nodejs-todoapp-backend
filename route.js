@@ -21,7 +21,7 @@ TodosRoute.route('/').post((req, res) => {
 
 TodosRoute.route('/update/:id').put((req, res) => {
     console.log("PUT update todo")
-    console.log(req.body)
+    // console.log(req.body)
     res.status(200).send(TodoService.updateTodo(req.params.id, req.body.todo))
 })
 
