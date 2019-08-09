@@ -46,6 +46,7 @@ export const resolvers = {
                 isDone: !toggleStatus,
                 name
             }))
+            toggleStatus = !toggleStatus
             return todos
         },
     }

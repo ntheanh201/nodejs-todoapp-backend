@@ -75,6 +75,7 @@ var resolvers = exports.resolvers = {
                     name: name
                 };
             });
+            toggleStatus = !toggleStatus;
             return _todos;
         }
     }
