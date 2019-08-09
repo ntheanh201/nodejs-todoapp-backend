@@ -43,7 +43,7 @@ class Todo {
         const index = this.todos.map(({ id }) => id).indexOf(todoId);
         this.todos[index].name = newTodo.name
         this.todos[index].isDone = newTodo.isDone
-        var isDone = newTodo.isDone === true ? 1 : 0
+        let isDone = newTodo.isDone === true ? 1 : 0
         const sql = `UPDATE ${this.table} SET isDone = '${isDone}', name = '${newTodo.name}' WHERE id = '${todoId}'`
         this.connector.query(sql, (err, results) => {
             console.log(newTodo.name + isDone)

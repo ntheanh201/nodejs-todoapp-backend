@@ -1,26 +1,19 @@
 import express from 'express'
-// import database from './database'
-import route from './route'
+import { ApolloServer, gql } from 'apollo-server-express'
+import { typeDefs } from './src/schema'
+import { resolvers } from './src/resolvers'
 
-const app = express()
-const port = 8123
+const PORT = 4000;
 
-var bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(bodyParser.json())
+const app = express();
 
-//nodemon -x npm start
-//npm run development
-
-app.use( (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-  next();
+const server = new ApolloServer({
+    typeDefs,
+    resolvers
 });
 
-app.use('/todos', route)
+server.applyMiddleware({ app });
 
-app.listen(port, () => console.log(`App listening on port ${port}!`))
+app.listen({ port: PORT }, () =>
+    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+)

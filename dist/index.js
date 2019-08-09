@@ -4,35 +4,25 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
-var _route = require('./route');
+var _apolloServerExpress = require('apollo-server-express');
 
-var _route2 = _interopRequireDefault(_route);
+var _schema = require('./src/schema');
+
+var _resolvers = require('./src/resolvers');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var PORT = 4000;
+
 var app = (0, _express2.default)();
-// import database from './database'
 
-var port = 8123;
-
-var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(bodyParser.json());
-
-//nodemon -x npm start
-//npm run development
-
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-  next();
+var server = new _apolloServerExpress.ApolloServer({
+    typeDefs: _schema.typeDefs,
+    resolvers: _resolvers.resolvers
 });
 
-app.use('/todos', _route2.default);
+server.applyMiddleware({ app: app });
 
-app.listen(port, function () {
-  return console.log('App listening on port ' + port + '!');
+app.listen({ port: PORT }, function () {
+    return console.log('\uD83D\uDE80 Server ready at http://localhost:4000' + server.graphqlPath);
 });
