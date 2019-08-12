@@ -1,13 +1,5 @@
 
-let todos = [{
-    id: 0,
-    isDone: false,
-    name: 'Todo Item 1'
-}, {
-    id: 1,
-    isDone: true,
-    name: 'Todos Item 2'
-}]
+let todos = []
 let toggleStatus = false
 
 export const resolvers = {
@@ -28,7 +20,8 @@ export const resolvers = {
             return todos
         },
         updateTodo: (root, { input }) => {
-            const index = todos.map(({ id }) => input.id).indexOf(input.id);
+            // console.log(input)
+            const index = todos.map(({id}) => id).indexOf(input.id);
             let name = todos[index].name
             let isDone = todos[index].isDone
             todos[index].name = name === 'undefined' ? name : input.name
@@ -49,5 +42,8 @@ export const resolvers = {
             toggleStatus = !toggleStatus
             return todos
         },
+        clearCompletedTodos: (root, {completed}) => {
+            todos = todos.filter(({isDone}) => !isDone)
+        }
     }
 };

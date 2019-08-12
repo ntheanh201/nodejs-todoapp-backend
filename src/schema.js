@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-express'
 
-export const typeDefs = gql`
+export const schema = gql`
     type Query {
         todos: [Todo]
         todo(id: String!): Todo
@@ -28,6 +28,7 @@ export const typeDefs = gql`
         updateTodo(input: TodoInput): [Todo]
         deleteTodo(id: String!): [Todo]
         toggleAllTodos(toggleStatus: Boolean!): [Todo]
+        clearCompletedTodos(completed: String!): [Todo]
     }
 
 `;

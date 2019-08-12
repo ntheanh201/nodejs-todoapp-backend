@@ -1,6 +1,6 @@
 import express from 'express'
 import { ApolloServer, gql } from 'apollo-server-express'
-import { typeDefs } from './src/schema'
+import { schema } from './src/schema'
 import { resolvers } from './src/resolvers'
 
 const PORT = 4000;
@@ -8,7 +8,7 @@ const PORT = 4000;
 const app = express();
 
 const server = new ApolloServer({
-    typeDefs,
+    typeDefs: schema,
     resolvers
 });
 

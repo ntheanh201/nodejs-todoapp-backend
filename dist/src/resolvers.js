@@ -6,15 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-var _todos = [{
-    id: 0,
-    isDone: false,
-    name: 'Todo Item 1'
-}, {
-    id: 1,
-    isDone: true,
-    name: 'Todos Item 2'
-}];
+var _todos = [];
 var _toggleStatus = false;
 
 var resolvers = exports.resolvers = {
@@ -43,9 +35,10 @@ var resolvers = exports.resolvers = {
         updateTodo: function updateTodo(root, _ref3) {
             var input = _ref3.input;
 
+            // console.log(input)
             var index = _todos.map(function (_ref4) {
                 var id = _ref4.id;
-                return input.id;
+                return id;
             }).indexOf(input.id);
             var name = _todos[index].name;
             var isDone = _todos[index].isDone;
@@ -77,6 +70,14 @@ var resolvers = exports.resolvers = {
             });
             toggleStatus = !toggleStatus;
             return _todos;
+        },
+        clearCompletedTodos: function clearCompletedTodos(root, _ref9) {
+            var completed = _ref9.completed;
+
+            _todos = _todos.filter(function (_ref10) {
+                var isDone = _ref10.isDone;
+                return !isDone;
+            });
         }
     }
 };

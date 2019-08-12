@@ -17,7 +17,7 @@ var PORT = 4000;
 var app = (0, _express2.default)();
 
 var server = new _apolloServerExpress.ApolloServer({
-    typeDefs: _schema.typeDefs,
+    typeDefs: _schema.schema,
     resolvers: _resolvers.resolvers
 });
 
