@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express'
 
 export const schema = gql`
     type Query {
-        todos: [Todo]
+        todos(filter: String!): [Todo]
         todo(id: String!): Todo
         toggleStatus: Boolean!
     }    

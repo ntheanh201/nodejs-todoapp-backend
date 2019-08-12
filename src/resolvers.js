@@ -4,8 +4,12 @@ let toggleStatus = false
 
 export const resolvers = {
     Query: {
-        todos: () => {
-            return todos
+        todos: (root, { filter }) => {
+            switch(filter){
+                case 'showAll': return todos
+                case 'showActive': return todos.filter(({isDone}) => !isDone)
+                case 'showCompleted': return todos.filter(({isDone}) => isDone)
+            }
         },
         todo: (root, { id }) => {
             return todos.find((todo) => todo.id == id)
