@@ -17,12 +17,12 @@ var PORT = 4000;
 var app = (0, _express2.default)();
 
 var server = new _apolloServerExpress.ApolloServer({
-    typeDefs: _schema.schema,
-    resolvers: _resolvers.resolvers
+  typeDefs: _schema.schema,
+  resolvers: _resolvers.resolvers
 });
 
 server.applyMiddleware({ app: app });
 
 app.listen({ port: PORT }, function () {
-    return console.log('\uD83D\uDE80 Server ready at http://localhost:4000' + server.graphqlPath);
+  return console.log('\uD83D\uDE80 Server ready at http://localhost:4000' + server.graphqlPath);
 });
