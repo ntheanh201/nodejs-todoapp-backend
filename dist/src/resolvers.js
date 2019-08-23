@@ -7,10 +7,12 @@ Object.defineProperty(exports, "__esModule", {
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var _todos = [];
-var _toggleStatus = false;
 
 var resolvers = exports.resolvers = {
   Query: {
+    getAllTodos: function getAllTodos(root) {
+      return _todos;
+    },
     todos: function todos(root, _ref) {
       var filter = _ref.filter;
 
@@ -35,9 +37,6 @@ var resolvers = exports.resolvers = {
       return _todos.find(function (todo) {
         return todo.id == id;
       });
-    },
-    toggleStatus: function toggleStatus() {
-      return _toggleStatus;
     }
   },
   Mutation: {

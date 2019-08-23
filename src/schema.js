@@ -2,9 +2,9 @@ import { gql } from 'apollo-server-express';
 
 export const schema = gql`
   type Query {
+    getAllTodos: [Todo]
     todos(filter: String!): [Todo]
     todo(id: String!): Todo
-    toggleStatus: Boolean!
   }
 
   type Todo {
@@ -17,10 +17,6 @@ export const schema = gql`
     id: String!
     isDone: Boolean
     name: String
-  }
-
-  input Toggle {
-    toggleStatus: Boolean!
   }
 
   type Mutation {

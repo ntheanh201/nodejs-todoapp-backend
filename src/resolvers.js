@@ -1,8 +1,10 @@
 let todos = [];
-let toggleStatus = false;
 
 export const resolvers = {
   Query: {
+    getAllTodos: root => {
+      return todos;
+    },
     todos: (root, { filter }) => {
       switch (filter) {
         case 'showAll':
@@ -15,9 +17,6 @@ export const resolvers = {
     },
     todo: (root, { id }) => {
       return todos.find(todo => todo.id == id);
-    },
-    toggleStatus: () => {
-      return toggleStatus;
     }
   },
   Mutation: {
