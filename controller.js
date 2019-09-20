@@ -14,7 +14,7 @@ class Todo {
 
     getTodos() {
         const sql = `SELECT * FROM ${this.table}`;
-        this.connector.query(sql, (err, results) => {
+        this.connector.query(sql, (err, results = []) => {
 
             const resultArray = Object.values(JSON.parse(JSON.stringify(results)))
             this.todos = resultArray.map(({ id, isDone, name }) => ({

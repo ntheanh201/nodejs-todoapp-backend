@@ -1,17 +1,18 @@
-import express from 'express'
-import { TodoService } from './controller'
+
+import express from 'express';
+import { TodoService } from './controller';
 var app = express()
 const TodosRoute = express.Router()
 
 TodosRoute.route('/').get((req, res) => {
-    console.log("GET all todos")
+    console.log("GET all todos");
     // res.status(200).send(TodoService.getTodos())
-    res.send(TodoService.getTodos())
+    res.send(TodoService.getTodos());
 })
 
 TodosRoute.route('/:id').get((req, res) => {
-    console.log('GET todo by id')
-    res.status(200).send(TodoService.getTodo(req.params.id))
+    console.log('GET todo by id');
+    res.status(200).send(TodoService.getTodo(req.params.id));
 })
 
 TodosRoute.route('/').post((req, res) => {

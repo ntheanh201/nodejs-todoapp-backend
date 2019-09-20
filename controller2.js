@@ -1,4 +1,3 @@
-import {Connector} from './database'
 
 class Todo {
     constructor(){

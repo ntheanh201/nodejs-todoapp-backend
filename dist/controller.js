@@ -37,7 +37,9 @@ var Todo = function () {
             var _this = this;
 
             var sql = 'SELECT * FROM ' + this.table;
-            this.connector.query(sql, function (err, results) {
+            this.connector.query(sql, function (err) {
+                var results = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
 
                 var resultArray = Object.values(JSON.parse(JSON.stringify(results)));
                 _this.todos = resultArray.map(function (_ref) {
